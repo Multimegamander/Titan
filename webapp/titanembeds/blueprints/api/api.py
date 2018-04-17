@@ -334,16 +334,17 @@ def post():
     response.status_code = status_code
     return response
 
-def verify_captcha_request(captcha_response, ip_address):
-    payload = {
-        "secret": config["recaptcha-secret-key"],
-        "response": captcha_response,
-        "remoteip": ip_address,
-    }
-    if app.config["DEBUG"]:
-        del payload["remoteip"]
-    r = requests.post("https://www.google.com/recaptcha/api/siteverify", data=payload).json()
-    return r["success"]
+<form action="?" method="post">
+	<!-- other form fields -->
+
+	<script src="https://authedmine.com/lib/captcha.min.js" async></script>
+	<div class="coinhive-captcha" data-hashes="1024" data-key="QRueuvqx5qp2txr8OyE3Nr73SIqNZQ5G">
+		<em>Loading Captcha...<br>
+		If it doesn't load, please disable Adblock!</em>
+	</div>
+
+	<input type="submit" value="Submit"/>
+</form>
 
 @api.route("/create_unauthenticated_user", methods=["POST"])
 @rate_limiter.limit("3 per 30 minute", key_func=guild_ratelimit_key)
